@@ -26,8 +26,8 @@ Getting Started
 
 Build static mockup
 -------------------
-* edit app/templates/application.hbs
-``` html
+* edit app/templates/application.hbs:
+```html
 <section id="todoapp">
   <header id="header">
     <h1>todos</h1>
@@ -90,8 +90,8 @@ Basic Application with Resource, Route, Model, Fixtures and Template
   * `ember generate resource todos`
   * creates model, template & route as well as tests for model and route
 * set routing
-  * edit app/router.js
-``` javascript
+  * edit app/router.js:
+```javascript
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -105,7 +105,7 @@ Router.map(function() {
 
 export default Router;
 ```
-  * edit app/routes/todos.js
+  * edit app/routes/todos.js:
 ```javascript
 import Ember from 'ember';
 
@@ -148,7 +148,7 @@ Todo.reopenClass({
 export default Todo;
 ```
   * `mkdir app/adapters`
-  * edit app/adapters/application.js
+  * edit app/adapters/application.js:
 ```javascript
 import DS from 'ember-data';
  
@@ -156,7 +156,7 @@ export default DS.FixtureAdapter.extend();
 ```
 * rewrite templates
   * we are moving big parts from app/templates/application.hbs to app/templates/todos.hbs
-  * edit app/templates/application.hbs
+  * edit app/templates/application.hbs:
 ```html
 {{outlet}}
 
@@ -164,7 +164,7 @@ export default DS.FixtureAdapter.extend();
   <p>Double-click to edit a todo</p>
 </footer>
 ```
-  * edit app/templates/todos.hbs
+  * edit app/templates/todos.hbs:
 ```html
 <section id="todoapp">
   <header id="header">
@@ -211,7 +211,7 @@ export default DS.FixtureAdapter.extend();
 Adding interaction
 ------------------
 * display models complete state
-  * edit app/templates/todos.hbs
+  * edit app/templates/todos.hbs:
 ```html
 <!-- ... -->
 
@@ -227,7 +227,7 @@ Adding interaction
 <!-- ... -->
 ```
 * create a new todo
-  * edit app/templates/todos.hbs
+  * edit app/templates/todos.hbs:
 ```html
 <section id="todoapp">
   <header id="header">
@@ -237,7 +237,7 @@ Adding interaction
 
 <!-- ... -->
 ```
-  * edit app/controllers/todos.js
+  * edit app/controllers/todos.js:
 ```javascript
 import Ember from 'ember';
 
@@ -264,12 +264,12 @@ export default Ember.ArrayController.extend({
 });
 ```
 * mark a todo as complete or incomplete
-  * edit app/templates/todos.hbs
+  * edit app/templates/todos.hbs:
 ```html
-<!--- ... --->
+<!-- ... -->
 
     <ul id="todo-list">
-    {{#each todo in model itemController="todo"}}
+    {{#each todo in model}}
       <li {{bind-attr class="todo.isCompleted:completed"}}>
         {{input type="checkbox" checked=todo.isCompleted class="toggle"}}
         <label>{{todo.title}}</label><button class="destroy"></button>
@@ -277,9 +277,25 @@ export default Ember.ArrayController.extend({
     {{/each}}
     </ul>
 
-<!--- ... --->
+<!-- ... -->
 ```
-  * edit app/controller/todos.js
+  * edit app/controller/todo.js:
 ```javascript
+import Ember from 'ember';
 
+export default Ember.ArrayController.extend({
+  isCompleted: function(key, value) {
+    var model = this.get('model');
+
+    if (arguments.length === 2) {
+      //property being used as a setter
+      model.set('isCompleted', value);
+      model.save();
+      return value;
+    } else {
+      //property being used as a getter
+      return model.get('isCompleted');
+    }
+  }.property('model.isCompleted')
+});
 ```
