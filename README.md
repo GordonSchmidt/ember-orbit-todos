@@ -4,7 +4,7 @@ TodoMVC expample with ember-cli and orbit
 Installation
 ------------
 
-* git clone https://github.com/GordonSchmidt/ember-orbit-todos.git
+* git clone [https://github.com/GordonSchmidt/ember-orbit-todos.git](https://github.com/GordonSchmidt/ember-orbit-todos.git)
 * cd ember-orbit-todos
 
 **Local installation**
@@ -25,7 +25,7 @@ Running
 -------
 
 * ember server
-* goto http://localhost:4200
+* application is available on [http://localhost:4200](http://localhost:4200)
 
 
 References
