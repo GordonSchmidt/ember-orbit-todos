@@ -1,0 +1,16 @@
+<nav>
+  <ul class="pager">
+    <li><a href="{{ site.baseurl }}">home</a></li>
+{% assign parts = (site.pages | where:"layout","part" | sort:"part") %}
+{% for part in parts %}
+  {% assign previous = part_number | minus:1 %}
+  {% assign next = part_number | plus:1 %}
+  {% if part.part == previous %}
+    <li class="previous"><a href="{{ site.baseurl }}{{ part.url }}"><span aria-hidden="true">&larr;</span> Part {{ part.part }}: {{ part.title }}</a></li>
+  {% endif %}
+  {% if part.part == next %}
+    <li class="next"><a href="{{ site.baseurl }}{{ part.url }}">Part {{ part.part }}: {{ part.title }} <span aria-hidden="true">&rarr;</span></a></li>
+  {% endif %}
+{% endfor %}
+  </ul>
+</nav>

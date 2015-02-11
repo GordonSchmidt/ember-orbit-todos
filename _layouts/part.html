@@ -1,0 +1,26 @@
+---
+layout: base
+---
+{% assign part_number = page.part %}
+{% include partpager.html %}
+
+    <h1>{{ page.title }}</h1>
+  {% capture summary %}{% include summary.md %}{% endcapture %}
+    <p>{{ summary | markdownify }}</p>
+    <p>{{ page.summary | markdownify }}</p>
+    {{ content }}
+
+    <section class="navigation">
+      <h2>Steps</h2>
+      <ul class="list-group">
+    {% assign steps = (site.pages | where:"layout","step" | where:"part",page.part | sort:"step") %}
+    {% for step in steps %}
+        <li class="list-group-item">
+          <a href="{{ site.baseurl }}{{ step.url }}"><h4 class="list-group-item-heading">Step {{ step.step }}: {{ step.title }}</h4></a>
+          <p class="list-group-item-text">{{ step.summary | markdownify }}</p>
+        </li>
+    {% endfor %}
+      </ul>
+    </section>
+
+{% include partpager.html %}

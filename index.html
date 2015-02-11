@@ -1,0 +1,19 @@
+---
+layout: default
+title: Welcome
+---
+{% capture summary %}{% include summary.md %}{% endcapture %}
+{{ summary | markdownify }}
+
+<section class="navigation">
+  <h2>Parts</h2>
+  <ul class="list-group">
+{% assign parts = (site.pages | where:"layout","part" | sort:"part") %}
+{% for part in parts %}
+    <li class="list-group-item">
+      <a href="{{ site.baseurl }}{{ part.url }}"><h4 class="list-group-item-heading">Part {{ part.part }}: {{ part.title }}</h4></a>
+      <p class="list-group-item-text">{{ part.summary | markdownify }}</p>
+    </li>
+{% endfor %}
+  </ul>
+</section>

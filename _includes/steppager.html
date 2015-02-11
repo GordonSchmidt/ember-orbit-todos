@@ -1,0 +1,16 @@
+<nav>
+  <ul class="pager">
+    <li><a href="{{ site.baseurl }}/part{{ part_number }}">Part {{ part_number }} overview</a></li>
+{% assign steps = (site.pages | where:"layout","step" | where:"part",part_number | sort:"step") %}
+{% for step in steps %}
+  {% assign previous = step_number | minus:1 %}
+  {% assign next = step_number | plus:1 %}
+  {% if step.step == previous %}
+    <li class="previous"><a href="{{ site.baseurl }}{{ step.url }}"><span aria-hidden="true">&larr;</span> Step {{ step.step }}: {{ step.title }}</a></li>
+  {% endif %}
+  {% if step.step == next %}
+    <li class="next"><a href="{{ site.baseurl }}{{ step.url }}">Step {{ step.step }}: {{ step.title }} <span aria-hidden="true">&rarr;</span></a></li>
+  {% endif %}
+{% endfor %}
+  </ul>
+</nav>

@@ -1,0 +1,4 @@
+{% assign steps = (site.pages | where:"layout","step" | where:"part",part_number | sort:"step") %}
+{% for step in steps %}
+  <li{% if page.step == step.step %} class="active"{% endif %}><a href="{{ site.baseurl }}{{ step.url }}">Step {{ step.step }}: {{ step.title }}</a></li>
+{% endfor %}

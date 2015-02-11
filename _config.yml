@@ -1,0 +1,11 @@
+# Site settings
+title: TodoMVC with ember-cli and orbit
+email: schmidt.gordon@web.de
+description: > # this means to ignore newlines until "baseurl:"
+  Step by step tutorial for a todo application build with ember-cli running on ember.js and orbit.js.
+baseurl: "/" # the subpath of your site, e.g. /blog/
+url: "http://gordonschmidt.github.io/ember-orbit-todos" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+highlighter: pygments

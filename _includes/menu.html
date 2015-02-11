@@ -1,0 +1,16 @@
+<ul class="nav navbar-nav">
+{% assign parts = (site.pages | where:"layout","part" | sort:"part") %}
+{% for part in parts %}
+  <li class="dropdown{% if part.part == page.part %} active{% endif %}">
+    <a href="{{ site.baseurl }}{{ part.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="Part {{ part.part}}: {{ part.title }}">
+      Part {{ part.part }}<span class="hidden-sm hidden-md">: {{ part.title }}</span><span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+    {% assign steps = (site.pages | where:"layout","step" | where:"part",part.part | sort:"step") %}
+    {% for step in steps %}
+      <li{% if page.step == step.step %} class="active"{% endif %}><a href="{{ site.baseurl }}{{ step.url }}">Step {{ step.step }}: {{ step.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
