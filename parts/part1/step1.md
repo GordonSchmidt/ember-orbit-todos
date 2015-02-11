@@ -106,6 +106,3 @@ echo "Finished installing libfontconfig"
 * `ember server`
 * goto http://localhost:4200
 * press ctrl+c to stop server
-
-[Preview]({{ site.baseurl }}/demos/part1/step1/)
-[Source Code](https://github.com/GordonSchmidt/ember-orbit-todos/tree/p1s1)

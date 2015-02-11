@@ -8,7 +8,7 @@ summary: "summary2"
 ---
 
 * edit app/templates/application.hbs:
-{% highlight html linenos %}
+{% highlight html %}
 <section id="todoapp">
   <header id="header">
     <h1>todos</h1>
@@ -62,6 +62,7 @@ summary: "summary2"
 {% endhighlight %}
 * copy resources form getting-started tutorial of emberjs
   * `wget http://emberjs.com.s3.amazonaws.com/getting-started/style.css -Oapp/styles/todos.css`
-  * `wget http://emberjs.com.s3.amazonaws.com/getting-started/bg.png -Opublic/bg.png`
+  * `wget http://emberjs.com.s3.amazonaws.com/getting-started/bg.png -Oapp/styles/bg.png`
+  * `rm app/styles/app.css`
 * run application and see static template
 

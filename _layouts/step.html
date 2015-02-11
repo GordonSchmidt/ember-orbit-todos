@@ -9,5 +9,7 @@ layout: base
       <p>{{ page.summary | markdownify }}</p>
       {{ content }}
 
+<a href="{{ site.baseurl }}/demos{{ page.url }}"><button type="button" class="btn btn-default">Preview</button></a>
+<a href="https://github.com/GordonSchmidt/ember-orbit-todos/tree/p{{ page.part }}s{{ page.step }}"><button type="button" class="btn btn-default">Source Code</button></a>
 {% include steppager.html %}
 

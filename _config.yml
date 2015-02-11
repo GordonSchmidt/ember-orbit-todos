@@ -3,8 +3,8 @@ title: TodoMVC with ember-cli and orbit
 email: schmidt.gordon@web.de
 description: > # this means to ignore newlines until "baseurl:"
   Step by step tutorial for a todo application build with ember-cli running on ember.js and orbit.js.
-baseurl: "/ember-orbit-todos" # the subpath of your site, e.g. /blog/
-url: "http://gordonschmidt.github.io" # the base hostname & protocol for your site
+baseurl: "/.dev/eot-gh-pages" # the subpath of your site, e.g. /blog/
+url: "http://geeez.de" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
