@@ -4,19 +4,38 @@ title:  "Getting Started"
 part: 1
 step: 1
 permalink: /part1/step1/
-summary: "summary1"
+summary: "Before even thinking about the content of the application you have to set up the environment and initialize a ember.js skeleton application.
+At the end of this step you can use ember-cli and will have a ember.js skeleton application up and running."
 ---
-# setup project folder
-* `mkdir todos`
-* `cd todos`
+## Setup project folder
+First you have to create a folder for the application and go to that folder.
+{% highlight bash %}
+{% raw %}
+mkdir todos
+cd todos
+{% endraw %}
+{% endhighlight %}
 
-# setup environment
-* choose between local installation or vagrant vm installation
-* local installation
-  * install nodejs, npm, phantomjs, bower and ember-cli
-* vagrant VM installation
-  * install vagrant and virtualbox
-  * create Vagrantfile:
+## Setup environment
+Now you need to install the following software packages that are required for working with this tutorial.
+
+* nodejs
+* npm
+* phantomjs
+* bower
+* ember-cli
+
+You can decide whether you like to install all these requirements directly onto your computer or work within a virtual maschine.
+If you are working on other projects as well with the same toolchain, than you might be better off installing everything directly.
+To keep your computer clean and tidy i would recomment using a virtual maschine.
+
+### Vagrant environment
+You can use vagrant to setup a virtualbox maschine. Then you only have to install the following packages on your computer.
+
+* vagrant
+* virtualbox
+
+Then you create a file named *Vagrantfile* directly in you project folder that looks like this:
 {% highlight ruby %}
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -56,7 +75,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision :shell, :path => "vagrantProvision.sh"
 end
 {% endhighlight %}
-  * create vagrantProvision.sh:
+This file describes the virtual maschine, its name and RAM size, port forwards you need and a basic image for the operating system. It also calls a provisioning shell script named *vagrantProvision.sh* for installing the software requirements of the tutorial.
+You need to create this shell script with the following content:
 {% highlight bash %}
 #!/bin/bash
 export DEBIAN_FRONTEND=noninteractive
@@ -95,14 +115,31 @@ echo "Installing libfontconfig - secret dependency of phantomjs"
 apt-get -q -y install libfontconfig >/dev/null
 echo "Finished installing libfontconfig"
 {% endhighlight %}
-  * `vagrant up`
-  * `vagrant ssh`
-  * `cd todos`
+You can bootup your virtual maschine now and connect to it. Your project folder will be linked into the virtual maschine at _/home/vagrant/todos_. To do so execute the following commands:
+{% highlight bash %}
+{% raw %}
+vagrant up
+vagrant ssh
+cd todos
+{% endraw %}
+{% endhighlight %}
 
-# create skeleton application with ember-cli
-* `ember init`
+## Create skeleton application with ember-cli
+Now that you have all the required tools at your disposal, you can user ember-cli to create an skeleton ember.js application by typing:
+{% highlight bash %}
+{% raw %}
+ember init
+{% endraw %}
+{% endhighlight %}
+This will create the file structure for the application (ember new) and resolve dependencies from npm and bower (ember install).
 
-# run skeleton application
-* `ember server`
-* goto http://localhost:4200
-* press ctrl+c to stop server
+## Run skeleton application
+Now you might want to know, how your application looks like. The easiest way to do so is the webserver integrated within ember-cli. You can start this server be calling:
+{% highlight bash %}
+{% raw %}
+ember server
+{% endraw %}
+{% endhighlight %}
+The application will be available on [http://localhost:4200](http://localhost:4200). This will also work if you're using the vagrant vm. This port will be forwarded to your host system.
+You can stop the webserver by presing `ctrl+c`.
+
