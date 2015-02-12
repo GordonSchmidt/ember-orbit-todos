@@ -1,6 +1,6 @@
 ---
 layout: step
-title:  "Handling the complete state of todos"
+title:  "Handle the complete state of todos"
 part: 1
 step: 4
 permalink: /part1/step4/
