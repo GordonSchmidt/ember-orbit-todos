@@ -4,11 +4,12 @@ title:  "Create, edit and delete todos"
 part: 1
 step: 5
 permalink: /part1/step5/
-summary: "summary5"
+summary: "You add functionality to create, update and delete todos.
+At the end of this step you can add a new todo, change the title of an existing one and remove a single todo or all completed todos at once."
 ---
 
 ## Create a new todo
-* edit *app/templates/todos.hbs*:
+You already have a text input for the creation of new todos. Now you have to bind it to an action. So edit *app/templates/todos.hbs*:
 {% highlight html %}
 {% raw %}
 <section id="todoapp">
@@ -19,7 +20,7 @@ summary: "summary5"
 <!-- ... -->
 {% endraw %}
 {% endhighlight %}
-* edit *app/controllers/todos.js*:
+Then you have to add the corresponding action to *app/controllers/todos.js*:
 {% highlight javascript %}
 {% raw %}
 import Ember from 'ember';
@@ -48,9 +49,12 @@ export default Ember.ArrayController.extend({
 // ...
 {% endraw %}
 {% endhighlight %}
-
+If the text isn't empty, this action will create a new incomplete todo model instance with the given text, reset the text input and save the todo to the store.
 ## Toggle between showing and editing a todo
-* edit *app/templates/todos.hbs*:
+To edit the title of a todo inline in the list, you have to replace this line of the list on a certain event.
+You can bind the text label for example to an action that is called, when the label is double clicked.
+This action will set a property called *isEditing*. So you can add a condition to show a text input instead of the normal line in the list, if this property is true.
+So edit *app/templates/todos.hbs*:
 {% highlight html %}
 {% raw %}
 <!-- ... -->
@@ -69,9 +73,7 @@ export default Ember.ArrayController.extend({
 <!-- ... -->
 {% endraw %}
 {% endhighlight %}
-
-
-* edit *app/controllers/todo.js*:
+The missing action in *app/controllers/todo.js* looks like this:
 {% highlight javascript %}
 {% raw %}
 import Ember from 'ember';
@@ -90,7 +92,7 @@ export default Ember.ObjectController.extend({
 {% endhighlight %}
 
 ## Save edits
-* create component *app/components/edit-todo.js*:
+You can create a component for this text input to add special behaviour to it. So create *app/components/edit-todo.js* with the content:
 {% highlight javascript %}
 {% raw %}
 import Ember from 'ember';
@@ -103,7 +105,8 @@ export default Ember.TextField.extend({
 });
 {% endraw %}
 {% endhighlight %}
-* edit *app/templates/todos.hbs*:
+You need to bind the input to an action. We want to accept changes when you leave the text input or press enter.
+To use the defined component you call *edit-todo* instead of *input* in your template *app/templates/todos.hbs*:
 {% highlight html %}
 {% raw %}
 <!-- ... -->
@@ -115,7 +118,7 @@ export default Ember.TextField.extend({
 <!-- ... -->
 {% endraw %}
 {% endhighlight %}
-* edit *app/controllers/todo.js*:
+Now the action is still missing. You should add it to *app/controllers/todo.js*:
 {% highlight javascript %}
 {% raw %}
 // ...
@@ -134,9 +137,10 @@ export default Ember.TextField.extend({
 // ...
 {% endraw %}
 {% endhighlight %}
-
+As you can see in this action it will call the *removeTodo* action when all text is removed.
+After you'll have add this action to the controller in the next section, you will be able to delete todos by removing it's title.
 ## Delete a todo
-* edit *app/templates/todos.hbs*:
+To delete a todo with the destroy button on the right of each line, you need to bind these buttons to an action by editing *app/templates/todos.hbs*:
 {% highlight html %}
 {% raw %}
 <!-- ... -->
@@ -150,7 +154,7 @@ export default Ember.TextField.extend({
 <!-- ... -->
 {% endraw %}
 {% endhighlight %}
-* edit *app/controllers/todo.js*:
+You have to add the action in *app/controllers/todo.js*:
 {% highlight javascript %}
 {% raw %}
 // ...
@@ -165,9 +169,9 @@ export default Ember.TextField.extend({
 // ...
 {% endraw %}
 {% endhighlight %}
-
+This will remove the todo from store, as soon as you click the button or remove the text of the title in editing mode.
 ## Enable button to remove all completed todos
-* edit *app/templates/todos.hbs*:
+To activate the button on the right to remove all completed todos at once, you have to bind it to an action by editing *app/templates/todos.hbs*:
 {% highlight html %}
 {% raw %}
 <!-- ... -->
@@ -179,7 +183,7 @@ export default Ember.TextField.extend({
 </section>
 {% endraw %}
 {% endhighlight %}
-* edit *app/controllers/todos.js*:
+Then you can provide these action in *app/controllers/todos.js*:
 {% highlight javascript %}
 {% raw %}
 import Ember from 'ember';
@@ -195,3 +199,5 @@ export default Ember.ArrayController.extend({
 // ...
 {% endraw %}
 {% endhighlight %}
+
+Now you're ready to run the application again and be able to create, edit and delete todos.
