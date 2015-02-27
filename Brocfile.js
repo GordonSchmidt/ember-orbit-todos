@@ -6,7 +6,23 @@ var app = new EmberApp();
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
-//
+
+app.import('bower_components/orbit.js/orbit.amd.js', {
+  exports: {'orbit': ['default']}
+});
+
+app.import('bower_components/orbit.js/orbit-common.amd.js', {
+  exports: {'orbit-common': ['default']}
+});
+
+app.import('bower_components/orbit.js/orbit-common-local-storage.amd.js', {
+  exports: {'orbit-common/local-storage-source': ['default']}
+});
+
+app.import('bower_components/ember-orbit/ember-orbit.amd.js', {
+  exports: {'ember-orbit': ['default']}
+});
+
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
 // object's keys should be the environment name and the values
