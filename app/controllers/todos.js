@@ -4,8 +4,7 @@ export default Ember.ArrayController.extend({
   actions: {
     clearCompleted: function() {
       var completed = this.filterBy('isCompleted', true);
-      completed.invoke('deleteRecord');
-      completed.invoke('save');
+      completed.invoke('remove');
     },
 
     createTodo: function() {
@@ -14,16 +13,13 @@ export default Ember.ArrayController.extend({
       if (!title.trim()) { return; }
 
       // Create the new Todo model
-      var todo = this.store.createRecord('todo', {
+      this.store.add('todo', {
         title: title,
         isCompleted: false
       });
 
       // Clear the "New Todo" text field
       this.set('newTitle', '');
-
-      // Save the new model
-      todo.save();
     }
   },
 
@@ -40,7 +36,6 @@ export default Ember.ArrayController.extend({
       return !!this.get('length') && this.isEvery('isCompleted', true);
     } else {
       this.setEach('isCompleted', value);
-      this.invoke('save');
       return value;
     }
   }.property('@each.isCompleted'),

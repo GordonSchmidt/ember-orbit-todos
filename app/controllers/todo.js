@@ -6,8 +6,7 @@ export default Ember.ObjectController.extend({
   actions: {
     removeTodo: function () {
       var todo = this.get('model');
-      todo.deleteRecord();
-      todo.save();
+      todo.remove();
     },
 
     acceptChanges: function() {
@@ -31,7 +30,6 @@ export default Ember.ObjectController.extend({
     if (arguments.length === 2) {
       //property being used as a setter
       model.set('isCompleted', value);
-      model.save();
       return value;
     } else {
       //property being used as a getter

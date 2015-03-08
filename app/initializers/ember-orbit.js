@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Orbit from 'orbit';
+import Orbit from 'orbit/main';
 import LocalStorageSource from 'orbit-common/local-storage-source';
 import EO from 'ember-orbit';
 
